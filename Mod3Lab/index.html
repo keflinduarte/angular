@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <title>Tony's Pizza</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+</head>
+
+<body ng-controller="pizzaController">
+    <div class="container">
+        <h1>Tony's Pizza</h1>
+
+        <h2>{{model.title}}</h2>
+
+        <h3>Topping Search</h3>
+
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Favorite food" value="Sushi">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Leave a comment"></textarea>
+            </mat-form-field>
+        </form>
+
+        <input type="text" class="form-control" ng-model="model.search">
+
+        <div ng-show="model.search"><strong>Search Result</strong></div>
+
+        <div ng-show="model.showAdded" id="msgToppingAdded" class="alert alert-success">
+            Topping Added <button ng-click="model.showAdded=false">Close</button>
+        </div>
+
+        <div class="alert alert-danger" ng-show="model.search.length > 0 && filteredToppings.length === 0">
+            No results.
+        </div>
+        
+        <div ng-hide="model.search">
+            Enter the search criteria above.
+        </div>
+
+        <div ng-show="model.search" ng-repeat="t in model.availableToppings | filter:model.search as filteredToppings">
+            <span ng-click="addTopping(t)">{{t}}</span>
+        </div>
+
+        <h3>Selected Toppings</h3>
+        <div ng-repeat="t in model.toppings">
+            <pre>{{t}}</pre>
+        </div>
+
+        
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="./app/app.js"></script>
+    <script src="./app/pizzaController.js"></script>
+</body>
+
+</html>
