@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <title>Tony's Pizza - New User Registration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+</head>
+
+<body ng-controller="labController">
+    <div class="container">
+        <h1>New User Registration</h1>
+
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label> Username </label>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" name="username" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-2">
+                    <label> Password </label>
+                </div>
+                <div class="col-md-5">
+                    <input type="password" name="password" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                
+                <div class="col-md-2">
+                    <label> Name </label>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" name="name" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-2">
+                    <label> Phone Number </label>
+                </div>
+                <div class="col-md-5">
+                    <input type="number" name="phone" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-2">
+                    <label> Email Address </label>
+                </div>
+                <div class="col-md-5">
+                    <input type="email" name="email" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-2">
+                    <label> Favorite Pizza </label>
+                </div>
+
+                <div class="col-md-5">
+                    <select name="favorite" class="form-control">
+                        <option> </option>
+                        <option> Cheese Pizza </option>
+                        <option> Pepperoni Pizza </option>
+                        <option> Margherita Pizza </option>
+                        <option> BBQ Chicken Pizza </option>
+                        <option> Combo Pizza </option>
+                    </select>        
+                </div>
+            </div>       
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-5">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <button class="btn btn-default"> Reset </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="./app/app.js"></script>
+    <script src="./app/labController.js"></script>
+</body>
+
+</html>
