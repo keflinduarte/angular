@@ -5,41 +5,59 @@
 	<title>Promises, HTTP and Resources</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
 		crossorigin="anonymous">
+	<style>
+		table {
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		td, th {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #dddddd;
+		}
+	</style>
 </head>
 
 <body ng-controller="labController">
 	<div class="container">
 		<h1>Promises, HTTP and Resources</h1>
 
-        <input type="number" ng-model="model.number" class="form-control" />
+		<input type="number" ng-model="model.number" class="form-control" />
 		<input type="button" class="btn btn-primary" value="Check Odd Number" ng-click="checkOddNumber(model.number)" />
 
-		<pre>{{model.result}}</pre>
-
-		<div>
-            <input type="text" class="form-control" ng-model="model.repos" placeholder="Enter your GIT Repository .." />
-            <input type="button" class="btn btn-primary" value="Load Repos" ng-click="getRepos()" ng-model="model.repos | filter:model.search"/>
+        <pre>{{model.result}}</pre>
+	
+		<div style="margin-top: 30px;">
+			<input type="text" class="form-control" ng-model="model.search" placeholder="Enter your GIT Repository .." style="margin-bottom: 10px;"/>
+			<input type="button" class="btn btn-primary" value="Load Repos" ng-click="getRepos(model.search)" />
         </div>
 
-         <div class="col-md-6">
+        <div class="col-md-6" style="margin-top: 10px;">
 			<table class="table table-striped" ng-show="model.repos">
 				<tr>
 					<th>Name</th>
 					<th>Language</th>
-					<th></th>
+					<th>Detail</th>
 				</tr>
-				<tr ng-show="model.repos" ng-repeat="r in model.repos">
+				<tr ng-show="model.repos" ng-repeat="r in model.repos | filter:model.search" >
 					<td>
 						<h4>{{r.name}}</h4> {{r.description}}
 					</td>
 					<td>{{r.language}}</td>
-					<td><input type="button" class="btn btn-primary" ng-click="loadDetail(r.name)" value="Detail"></td>
-				</tr>
+					<td><input type="button" class="btn btn-primary" ng-click="loadDetail(r.name, model.search)" value="Detail"></td>
+				</tr> 
 			</table>
+			<div ng-show="model.alertRepos" class="alert alert-danger">
+				{{ model.alertRepos }}
+			</div>
 		</div>
-
-        
-		<div class="col-md-5" ng-show="model.detail">
+        <div class="col-md-5" ng-show="model.detail">
 			<h3>Detail</h3>
 			<div ng-show="model.detail.error" class="alert alert-danger">
 				<h3>Error</h3>{{model.detail.message}}</div>
@@ -62,6 +80,9 @@
             <h4>Raw Data</h4>
             <pre>{{model.detail | json}}</pre>
 		</div>
+		<!-- <div class="col-md-5" ng-show="model.alertDetail" class="alert alert-danger">
+			{{ model.alertDetail }}
+		</div> -->
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>

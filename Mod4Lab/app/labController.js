@@ -10,12 +10,18 @@ app.controller('labController', [
         $scope.getRepos = getRepos;
         $scope.loadDetail = loadDetail;
 
-        function loadDetail(name) {
-            $scope.model.detail = gitHub.getDetail({ id: name });
+        function loadDetail(name, search) {
+            $scope.model.detail = null;
+            $scope.model.detail = gitHub.getDetail ({
+                org: search ,
+                id: name
+            });
         }
 
-        function getRepos() {
-            $scope.model.repos = gitHub.getAll();
+        function getRepos(search) {
+            $scope.model.repos = gitHub.getAll ({
+                org: search
+            });
         }
 
         function checkOddNumber(input) {
