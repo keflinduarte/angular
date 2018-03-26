@@ -1,5 +1,6 @@
-var app = angular.module('app', []);
-
-app.controller('labController', function($scope) {
-    
-});
+var app = angular.module('app',
+    [
+        'ngResource',
+        'registrationService'
+    ]
+);
