@@ -3,7 +3,7 @@ app.controller('labController', [
     function ($scope, registration) {
         $scope.reset = reset;
         $scope.submit = submit;
-
+        
         reset();
 
         function submit(model) {

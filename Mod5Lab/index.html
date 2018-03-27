@@ -11,17 +11,21 @@
 	<div class="container">
 		<h1>New User Registration</h1>
 
-		<form class="form-horizontal" name="form" >
+		<form class="form-horizontal" name="form" novalidate>
 			<div class="form-group">
+
 				<div class="col-md-2">
-					<label>Username</label>
+                    <label>Username</label>
 				</div>
+				
 				<div class="col-md-5">
-					<input type="text" name="username" class="form-control" ng-model="model.username" required>
-					<div class="alert alert-danger" ng-show="(form.username.$touched || form.$submitted) && form.username.$error.required">
-						Username is required
-					</div>
+                    <input type="text" name="username" class="form-control" ng-model="username" required>
+                    <div class="alert alert-danger" ng-show="form.username.$touched && form.username.$invalid">
+                        Username required !
+                        <
+				    
 				</div>
+                
 			</div>
 			<div class="form-group">
 				<div class="col-md-2">
@@ -29,9 +33,9 @@
 				</div>
 				<div class="col-md-5">
 					<input type="password" name="password" class="form-control" ng-model="model.password" required>
-					<div class="alert alert-danger" ng-show="(form.password.$touched || form.$submitted) && form.password.$error.required">
+					<!-- <div class="alert alert-danger" ng-show="(form.password.$touched || form.$submitted) && form.password.$error.required">
                         Password is required                                          
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="form-group">
@@ -39,9 +43,16 @@
 					<label>Name</label>
 				</div>
 				<div class="col-md-5">
-					<input type="text" name="name" class="form-control" ng-model="model.name" required>
-					<div class="alert alert-danger" ng-show="(form.name.$touched || form.$submitted) && form.name.$error.required">
-						Name is required
+					<input type="text" id="name" name="name" class="form-control" required minlength="4" [(ngModel)]="model.name" #name="ngModel">
+					<div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                        
+                        <div *ngIf="name.errors.required">
+                            Name is required
+                        </div>
+                        <div *ngIf="name.errors.minlength">
+                            Name must be at least 4 characters long.
+                        </div>
+                        
 					</div>
 				</div>
 			</div>
@@ -51,9 +62,9 @@
 				</div>
 				<div class="col-md-5">
 					<input type="number" name="phone" class="form-control" ng-model="model.phone" ng-required="false">
-					<div class="alert alert-danger" ng-show="(form.phone.$touched || form.$submitted) && form.phone.$error.required">
+					<!-- <div class="alert alert-danger" ng-show="(form.phone.$touched || form.$submitted) && form.phone.$error.required">
 						Phone is required
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="form-group">
@@ -62,9 +73,9 @@
 				</div>
 				<div class="col-md-5">
 					<input type="email" name="emailAddress" class="form-control" ng-model="model.email" ng-required="true">
-					<div class="alert alert-danger" ng-show="(form.emailAddress.$touched || form.$submitted) && form.emailAddress.$error.required">
+					<!-- <div class="alert alert-danger" ng-show="(form.emailAddress.$touched || form.$submitted) && form.emailAddress.$error.required">
 						Email Address is required
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="form-group">
@@ -80,9 +91,9 @@
                         <option>BBQ Chicken Pizza</option>
                         <option>Combo Pizza</option>
 					</select>
-					<div class="alert alert-danger" ng-show="(form.favorite.$touched || form.$submitted) && form.favorite.$error.required">
+					<!-- <div class="alert alert-danger" ng-show="(form.favorite.$touched || form.$submitted) && form.favorite.$error.required">
 						Favorite is required
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="form-group">
