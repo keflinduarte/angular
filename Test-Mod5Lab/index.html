@@ -12,7 +12,7 @@
     <div class="container">
         <h1> Test </h1>
 
-        <form class="form-horizontal" name="form">
+        <form class="form-horizontal" name="form" novalidate ng-hide="token">
             <div class="form-group">
                 <div class="col-md-5">
                     <label> Username </label>
@@ -46,7 +46,7 @@
             <div class="form-group">
                 <div class="col-md-5">
                     <label> Phone Number </label>
-                    <input type="number" class="form-control" name="phone" ng-model="model.phone" required>
+                    <input type="number" class="form-control" name="phone" ng-model="model.phone" ng-required="!model.email">
                     <div class="alert alert-danger" ng-show="(form.phone.$touched || form.$submitted) && form.phone.$error.required">
                         Phone is required
                     </div>  
@@ -56,7 +56,7 @@
             <div class="form-group">
                 <div class="col-md-5">
                     <label> E-mail Address </label>
-                    <input type="email" class="form-control" name="email" ng-model="model.email" required>
+                    <input type="email" class="form-control" name="email" ng-model="model.email" ng-required="!model.phone">
                     <div class="alert alert-danger" ng-show="(form.email.$touched || form.$submitted) && form.email.$error.required">
                         Email is required
                     </div>  
@@ -84,10 +84,12 @@
 					<input type="submit" value="Submit" class="btn btn-primary" ng-click="submit(model)" ng-disabled="form.$invalid" />
 					<button class="btn btn-default" ng-click="reset()">Reset</button>
 				</div>
-			</div>
+            </div>
+            <pre> {{model | json}} </pre>
         </form>
-
-        <pre> {{model | json}} </pre>
+        <div ng-show="token">
+            <h2> Successfully Registered ! </h2>
+            <p><strong> Token: </strong> {{token}} </p>        
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
